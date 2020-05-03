@@ -1,5 +1,5 @@
+.dist/*
 .DS_Store
-
 .vscode/settings.json
 .vscode/launch.json
 __pycache__/
@@ -10,6 +10,7 @@ __pycache__/
 !source/.gitignore
 !source/official/.gitignore
 # Force create of source/official as empty directory
+
 
 
 config-template.yml
