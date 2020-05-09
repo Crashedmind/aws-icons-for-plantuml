@@ -172,11 +172,11 @@ def create_config_template():
         category = i.split("/")[3]
         target = Icon(i.split("/")[-1], {})._make_name(i.split("/")[-1])
         print("target",target)
-# sentence.replace(" ", "")
-        # source_name = i.split("/")[-1]
+
         source_name = i.split("/")[-1].split(".png")[0]
         print("source_name", source_name)
         file_source_dir = "/".join(i.split("/", 3)[-1].split("/")[:-1])
+        file_source_dir = file_source_dir.replace(" ", "_") #replace spaces from dir names with "_"
         print("file_source_dir", file_source_dir)
 
         # Process each file and populate entries for creating YAML file
@@ -288,6 +288,8 @@ def main():
     # Create category directories
     categories = sorted(set([icon.category for icon in icons]))
     for i in categories:
+        #spaces from source dir are replaced with "_" in target dir
+        i = i.replace(" ", "_")
         Path(f"../dist/{i}").mkdir(exist_ok=True)
 
     # Create PlantUML sprites
@@ -299,6 +301,8 @@ def main():
 
     # Generate "all.puml" files for each category
     for i in categories:
+        #spaces from source dir are replaced with "_" in target dir
+        i = i.replace(" ", "_")
         create_category_all_file(Path(f"../dist/{i}"))
 
     # Create markdown sheet and place in dist
